@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>momoloco　―モモロコ　みんなで混雑状況を共有しよう―</title>
+<meta name="description" content="モモロコは、お店などの混雑状況をみんなで共有するサービスです。今いる場所の混雑状況をみんなに教えてあげましょう。そして、次の目的地の混雑状況を調べてみましょう。">
+<meta name="keywords" content="momoloco,モモロコ,混雑,混雑状況,混雑情報,カフェ,喫茶店,位置情報,空いてる,混んでる">
+<link href="css/reset.css" rel="stylesheet" type="text/css">
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<link href="css/top.css" rel="stylesheet" type="text/css">
+<!--[if IE]>
+<style>.arrow { top: 100%; }</style>
+<![endif]-->
+<script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.page-scroller-308.js" charset="utf-8"></script>
+</head>
+
+<body>
+<div id="container">
+<div id="header">
+<h1><a href="index.html">momoloco　―モモロコ　みんなで混雑状況を共有しよう―</a></h1>
+</div><!-- / #header -->
+
+<div id="main" class="topleft topright bottomleft bottomright boxshadow clearfix">
+<div id="visual" class="topleft topright clearfix">
+<div id="messege">
+<h2>混んでる？空いてる？をみんなで共有 <span class="arrow"></span> </h2>
+<p>
+モモロコは、お店などスポットの混雑状況をみんなで共有するサービスです。<br />今いるスポットの混雑状況をみんなに教えてあげましょう。<br />そして、次の目的地の混雑状況を教えてもらいましょう。
+</p>
+</div><!-- / #messege -->
+<div id="tl">
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+var options = {
+	tstLanguage : 'ja',
+	tstAlign : 'left',
+	tstWidth : '888px',
+	tstBackgroundColor : '#f5ead8',
+	tstBorderColor : '#ff8c00',
+	tstDuration : 2000,
+	tstDelay : 3000,
+	tstUserColor : '#442506',
+	tstTweetColor : '#442506',
+	tstDateColor : '#999999',
+	tstLinkColor : '00aaff',
+	tstKeyword : '混んでる'
+};
+</script>
+<script src="http://twitsandbox.com/ticker/js/twitSearchTicker.0.1.js"></script>
+</div>
+<div id="phone">
+<img src="img/iPhone_top_m.png" width="279" height="600" alt="hogehoge" />
+</div><!-- / #phone -->
+</div><!-- / #visual -->
+
+<div id="download" class="contents borderright">
+<h3>モモロコを使ってみる</h3>
+<h4>アプリをダウンロードする</h4>
+<a href="application/Momoloco.apk"><img src="img/androidmarket_logo.png" width="95" height="40" alt="Android Market" /></a>
+<ul>
+<li>現在、α版を上記のリンクから直接ダウンロードしていただけます。</li>
+<li>モモロコは位置情報を利用したサービスです。ご利用の際は、端末の位置情報の設定をオンにしてください。</li>
+<li>モモロコが、<a href="privacy.html">あなたの位置情報を第三者に公開することはありません</a>。</li>
+</ul>
+<h4>今すぐお店を探す</h4>
+<div id="search">
+<form action="map.html" method="post">
+<input id="submit" type="submit" value=" カフェを探す " />
+</form>
+</div><!-- / #search -->
+</div><!-- / #download -->
+
+<div id="news" class="contents">
+<h3>モモロコからのお知らせ</h3>
+<div class="twnews">
+<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+<script>
+new TWTR.Widget({
+  version: 2,
+  type: 'profile',
+  rpp: 3,
+  interval: 30000,
+  width: 400,
+  height: 150,
+  theme: {
+    shell: {
+      background: '#f5ead8',
+      color: '#442506'
+    },
+    tweets: {
+      background: '#ffffff',
+      color: '#442506',
+      links: '#ff8c00'
+    }
+  },
+  features: {
+    scrollbar: true,
+    loop: false,
+    live: true,
+    hashtags: true,
+    timestamp: true,
+    avatars: false,
+    behavior: 'all'
+  }
+}).render().setUser('momoloco_jp').start();
+</script>
+</div><!-- / .twnews -->
+</div><!-- / #news -->
+<div style="clear:both;"></div>
+<div class="topagetop">
+<a href="#container">▲ このページの上へ</a>
+</div><!-- / .topagetop -->
+</div><!-- / #main -->
+
+<div id="footer" class="clearfix">
+<div id="copyright">
+&copy; 2011 momoloco  All Rights Reserved.
+</div><!-- / #copyright -->
+<div id="fmenu">
+<ul>
+<li><a href="guideline.html">ガイドライン</a></li>
+<li><a href="rules.html">利用規約</a></li>
+<li><a href="privacy.html">プライバシーポリシー</a></li>
+</ul>
+</div><!-- / #fmenu -->
+</div><!-- / #footer -->
+</div><!-- / #container -->
+<style type="text/css">
+.twnews h3 {
+	border:none;
+}
+.twnews h4 {
+	border:none;
+}
+</style>
+</body>
+</html>

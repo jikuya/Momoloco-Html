@@ -1,0 +1,125 @@
+@charset "UTF-8";
+#visual {
+	position:relative;
+	height:420px;
+	background:#ffa500; /* グラデーション無効時 */
+	background: -moz-linear-gradient(top, #ffd400, #ff8c00);　/* Firefox用 */
+	background: -webkit-gradient(linear, center top, center bottom, from(#ffd400), to(#ff8c00));　/* Safari,Google Chrome用 */
+}
+#visual #messege {
+	float:left;
+	width:500;
+	text-align:left;
+	margin-top:50px;
+}
+#visual #messege h2 {
+	 background: #e3e3e3;
+	 background: -moz-linear-gradient(top, #99eeff, #00aaff);
+	 background: -webkit-gradient(linear, left top, left bottom, from(#99eeff), to(#00aaff));
+	 padding: 5px 20px;
+	 margin-left: -20px;
+	 margin-top: 0;
+	 position: relative;
+	 text-align:center;
+	 vertical-align:middle;
+	 width: 90%;
+
+	-moz-box-shadow: 1px 1px 3px #292929;
+	-webkit-box-shadow: 1px 1px 3px #292929;
+       box-shadow: 1px 1px 3px #292929;
+
+	color: #FFF;
+	font-size:28px;
+	text-shadow: 0 1px 0 white;
+}
+.arrow {
+	 width:0; 
+	 height:0;
+	 line-height:0;
+	 border-left:20px solid transparent;
+	 border-top:10px solid #0099e5;
+	 top:101%;
+	 left:0;
+	 position:absolute;
+}
+#visual #messege p {
+	width:500px;
+	line-height:200%;
+	font-size:18px;
+	margin:30px 30px 0;
+}
+#visual #tl {
+	position:absolute;
+	top:340px;
+}
+#visual #phone {
+	position:200px 0 0 0;
+	float:left;
+	width:400;
+	position:absolute;
+	top:-60px;
+	left:580px;
+}
+#download {
+	float:left;
+	width:400px;
+	height:370px;
+	margin-top:50px;
+}
+#download a {
+	display:block;
+	margin:0 0 10px 25px;
+}
+#download ul {
+	margin:0 0 20px 35px;
+	line-height:150%;
+	text-align: justify; /* for modern browser */
+    text-justify: inter-ideograph; /* IE6～8 */
+}
+#download li {
+	list-style:disc;
+	font-size:12px;
+	color:#808080;
+}
+#download li a:link {
+	display:inline;
+	margin:0;
+	padding:0;
+	color:#808080;
+	text-decoration:underline;
+}
+#download li a:visited {
+	display:inline;
+	margin:0;
+	padding:0;
+	color:#808080;
+	text-decoration:underline;
+}
+#download li a:hover {
+	display:inline;
+	margin:0;
+	padding:0;
+	color:#00aaff;
+	text-decoration:underline;
+}
+#download li a:active {
+	display:inline;
+	margin:0;
+	padding:0;
+	color:#00aaff;
+	text-decoration:underline;
+}
+#download #search {
+	margin:0 0 20px 25px;
+}
+#download #search form #address {
+	height:25px;
+}
+#download #search form #submit {
+	height:30px;
+}
+#news {
+	float:left;
+	width:400px;
+	margin-top:130px;
+}

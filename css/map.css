@@ -1,0 +1,32 @@
+@charset "UTF-8";
+.contents {
+	text-align:center;
+	margin:0 0 0 0;
+	padding:5px 0 0 0;
+}
+#main {
+	width:900px;
+	text-align:center;
+}
+#search {
+	margin:20px 0;
+	width:900px;
+}
+form #address {
+	width:650px;
+	height:25px;
+}
+form #submit {
+	width:150px;
+	height:30px;
+}
+#map {
+	width:900px;
+	display:block;
+	margin-bottom:20px;
+	padding:0 50px;
+}
+#map_canvas {
+	width:800px;
+	height:600px;
+}

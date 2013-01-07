@@ -1,0 +1,163 @@
+@charset "UTF-8";
+/* clearfix ここから*/
+.clearfix:after {
+  content: ".";  /* 新しい要素を作る */
+  display: block;  /* ブロックレベル要素に */
+  clear: both;
+  height: 0;
+  visibility: hidden;
+}
+.clearfix {
+  min-height: 1px;
+}
+* html .clearfix {
+  height: 1px;
+  /*¥*//*/
+  height: auto;
+  overflow: hidden;
+  /**/
+}
+
+* {
+	margin:0;
+	padding:0;
+	font-size:100%;
+	list-style:none;
+	font-weight:normal;
+	font-family : Helvetica, "メイリオ", Meiryo, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	color:#442506;
+}
+img {
+	vertical-align:bottom;
+	border:none;
+}
+a{
+    color:0000ff;
+    font-style:normal;
+    text-decoration:none;
+}
+a:link {
+    color:0000ff;
+    font-style:normal;
+    text-decoration:none;
+}
+a:visited {
+    color:#0000ff;
+    font-style:normal;
+    text-decoration:underline;
+}
+a:hover {
+    color:#00aaff;
+    font-style:normal;
+    text-decoration:underline;
+}
+a:active {
+    color:#00aaff;
+    font-style:normal;
+    text-decoration:underline;
+}
+body {
+	background:url(../img/bg.jpg) repeat;
+	text-align:center;
+}
+h2 {
+	font-size:30px;
+}
+h3 {
+	font-size:18px;
+	margin:0 0 15px 0;
+	border-left:#442506 solid 10px;
+	border-bottom:#442506 solid 2px;
+	padding:0 0 0 7px;
+}
+h4 {
+	font-size:14px;
+	margin:5px 0 15px 12px;
+	border-left:#ff8c00 solid 6px;
+	padding:0 0 0 7px;
+}
+#container {
+	margin:auto;
+	width:900px;
+	height:auto;
+}
+#header {
+	margin:15px 5px 2px 10px;
+	height:60px;
+}
+#header h1 a {
+	background:url(../img/logo_beta.png) no-repeat left top;
+	display:block;
+	width:200px;
+	height:55px;
+	text-indent:-9999px;
+	overflow:hidden;
+}
+#main {
+	background: #FFF;
+}
+#footer {
+	text-align:left;
+	margin:10px 5px 5px 5px;
+	font-size:12px;
+}
+#footer #copyright {
+	float:left;
+	margin-top:2px;
+	font-weight:bold;
+}
+#footer #fmenu {
+	float:right;
+}
+#footer #fmenu li{
+	display:inline;
+	margin:0 10px;
+}
+.contents {
+	text-align:left;
+	margin:0 0 30px 20px;
+	padding:0 20px 0 0;
+}
+.borderright {
+	border-right:#d3d3d3 dotted 1px;
+}
+.topleft{
+    -moz-border-radius-topleft: 10px;
+    -webkit-border-top-left-radius: 10px;
+    -khtml-border-radius-topleft: 10px;
+    border-top-left-radius: 10px;
+}
+.topright{
+    -moz-border-radius-topright: 10px;
+    -webkit-border-top-right-radius: 10px;
+    -khtml-border-radius-topright: 10px;
+    border-top-right-radius: 10px;
+}
+.bottomleft{
+    -moz-border-radius-bottomleft: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -khtml-border-radius-bottomleft: 10px;
+    border-bottom-left-radius: 10px;
+}
+.bottomright{
+    -moz-border-radius-bottomright: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    -khtml-border-radius-bottomright: 10px;
+    border-bottom-right-radius: 10px;
+}
+.boxshadow {
+	-moz-box-shadow: 1px 1px 5px #c0c0c0;　/* Firefox用 */  
+	-webkit-box-shadow: 1px 1px 5px #c0c0c0;　/* Safari,Google Chrome用 */
+}
+.topagetop {
+	width:900px;
+	height:35px;
+	text-align:right;
+	vertical-align:middle;
+}
+.topagetop a {
+	font-size:14px;
+	color:#ff8c00;
+	text-decoration:none;
+	margin:10px 20px;
+}

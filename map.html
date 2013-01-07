@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>マップ｜momoloco　―モモロコ　みんなで混雑状況を共有しよう―</title>
+<meta name="description" content="モモロコは、お店などの混雑状況をみんなで共有するサービスです。今いる場所の混雑状況をみんなに教えてあげましょう。そして、次の目的地の混雑状況を調べてみましょう。">
+<meta name="keywords" content="momoloco,モモロコ,混雑,混雑状況,混雑情報,カフェ,喫茶店,位置情報,空いてる,混んでる,マップ,検索">
+<link href="../css/reset.css" rel="stylesheet" type="text/css">
+<link href="../css/base.css" rel="stylesheet" type="text/css">
+<link href="css/map.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery.page-scroller-308.js" charset="utf-8"></script>
+<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+<script type="text/javascript">
+//<![CDATA[
+    var mapObj;
+    var currentInfoWindowObj;
+    var markers;
+    var clickMarker;
+    var eventListener;
+    var lat = 35.609715;
+    var lng = 139.749688;
+    var latlng = new google.maps.LatLng(lat, lng, true);
+    var clickLat;
+    var clickLng;
+    var zoomLevel = 13;
+
+    var cid;
+    var cname;
+    var pname;
+
+    function initialize() {
+        myOptions = {
+            zoom: zoomLevel,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            disableDoubleClickZoom: true,
+        };
+        mapObj = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        markers = new google.maps.MVCArray();
+        clickMarker = new google.maps.Marker({
+            position: null, //最初は描画しないので位置は指定しない
+            draggable: true, //このパラメーターでピンがドラッグ出来るようになる
+            map: mapObj
+        });
+
+        // ドラッグするごとに緯度経度を取得
+        google.maps.event.addListener(mapObj, 'dragend', function() {
+            var pos = mapObj.getCenter();
+            lat = pos.lat();
+            lng = pos.lng();
+            findMap();
+        });
+
+        // ズームする度にズームレベルを取得
+        google.maps.event.addListener(mapObj, 'zoom_changed', function() {
+            zoomLevel = mapObj.getZoom();
+        });
+
+        // マーカーをクリックした時のイベント
+        google.maps.event.addListener(clickMarker, 'dragend', function(event) {
+            clickLat = event.latLng.lat();
+            clickLng = event.latLng.lng();
+        }); 
+   
+        // 住所検索のサジェスト
+        var input = document.getElementById('address');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+    }
+
+    function geosearch(input) {
+        var request = { address: input };  
+        var geocoder = new google.maps.Geocoder();  
+        geocoder.geocode(request, function(results, status) {  
+            // ステータスがOKならマーカーを表示する。  
+            if (status == google.maps.GeocoderStatus.OK) {
+                // 地図の中心を設定  
+                mapObj.panTo(results[0].geometry.location);
+                mapObj.setZoom(17);
+                // ジオコーディング検索結果の緯度経度を取得
+                var tempMarker = new google.maps.Marker();
+                tempMarker.setPosition(results[0].geometry.location);
+                var p = tempMarker.position;
+                lat = p.lat();
+                lng = p.lng();
+                // momoloco APIを呼び出す
+                findMap();
+            } else {
+                alert('検索失敗');
+            }  
+        });
+    }
+
+    function findMap() {
+        $.ajax({
+            type: "POST",
+            url: "/map/index.php/top/findMap/",
+            data: {"lat": lat, "lng": lng, "range": zoomLevel},
+            success: function(data, status, xhr){
+                showMap( eval( "("+data+")" ) );
+            },
+            error: function(data){
+                alert(data.point[0]);
+                alert( '失敗しました！' );
+            }
+        });
+    }
+
+    function showMap(data) {
+        for(var i = 0; i < data.length; i++) { 
+            var lat     = data[i].loc.lat;
+            var lng     = data[i].loc.lng;
+            var LatLng = new google.maps.LatLng(lat,lng);
+            var marker = new google.maps.Marker({
+                position: LatLng,
+                map: mapObj
+            });
+            var contents  = data[i].name + "<br>";
+                contents += data[i].tel;
+            attachMessage(marker, contents);
+            markers.push(marker);
+        }
+    }
+
+    function attachMessage(marker, msg) {
+        var infoWindow = new google.maps.InfoWindow({
+            maxWidth: 300,
+            disableAutoPan: true
+        });
+        google.maps.event.addListener(marker, 'click', function(){
+            if(currentInfoWindowObj){
+                currentInfoWindowObj.close();
+            }
+            infoWindow.setContent(msg);
+            infoWindow.open(mapObj, marker);
+            currentInfoWindowObj = infoWindow;
+        });
+    }
+
+//]]>
+</script>
+</head>
+
+<body onload="initialize()">
+<div id="container">
+<div id="header">
+<h1><a href="../index.html">momoloco　―モモロコ　みんなで混雑状況を共有しよう―</a></h1>
+</div><!-- / #header -->
+
+<div id="main" class="topleft topright bottomleft bottomright boxshadow clearfix">
+<div class="contents">
+
+<div id="search">
+<form action="#" onsubmit="geosearch(this.address.value); return false">
+<input id="address" type="text" size="100" name="address" value="品川シーサイド駅" />
+<input id="submit" type="submit" value=" カフェを探す " />
+</form>
+</div><!-- / #search -->
+
+<div id="map">
+<div id="map_canvas">
+</div><!-- / #map_canvas -->
+</div><!-- / #map -->
+
+</div><!-- / .contents -->
+<div class="topagetop">
+<a href="#container">▲ このページの上へ</a>
+</div><!-- / .topagetop -->
+</div><!-- / #main -->
+
+<div id="footer" class="clearfix">
+<div id="copyright">
+&copy; 2011 momoloco  All Rights Reserved.
+</div><!-- / #copyright -->
+<div id="fmenu">
+<ul>
+<li><a href="../guideline.html">ガイドライン</a></li>
+<li><a href="../rules.html">利用規約</a></li>
+<li><a href="../privacy.html">プライバシーポリシー</a></li>
+</ul>
+</div><!-- / #fmenu -->
+</div><!-- / #footer -->
+</div><!-- / #container -->
+</body>
+</html>
